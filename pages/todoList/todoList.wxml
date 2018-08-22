@@ -1,0 +1,36 @@
+<view class="todo-container">
+  <view class="top">  
+    <view class="title">TodoList</view>
+    <input value="{{inputValue}}" class="todo-input" type="text" placeholder="请输入TodoList" bindconfirm="add" />
+  </view>
+  <view class="page-list">
+    <view class="page-title">正在进行
+      <view id="todocount">{{todoLength}}</view>
+    </view>
+    <view class="doing-list">
+      <checkbox-group bindchange="update" data-type="doing">
+        <view class="checkbox" wx:for="{{todoList}}" wx:for-index="idx" wx:key="*this" id="*this" wx:if="{{item.checked === false}}">
+          <label>
+            <checkbox checked="{{item.checked}}" value="{{idx}}"/>
+          </label>
+          <input class="input-2" value="{{item.value}}" />
+          <view data-index="{{idx}}" class="delete"         bindtap="deleteItem">-</view>
+        </view>
+      </checkbox-group>
+    </view>
+    <view class="page-title">已经完成
+      <view id="todocount">{{doneLength}}</view>
+    </view>
+    <view class="done-list">
+      <checkbox-group bindchange="update" data-type="done">
+        <view class="checkbox" wx:for="{{todoList}}" wx:for-index="idx" wx:key="*this" id="*this" wx:if="{{item.checked === true}}">
+          <label>
+            <checkbox checked="{{item.checked}}" value="{{idx}}"/>
+          </label>
+          <input class="input-2" value="{{item.value}}" />
+          <view data-index="{{idx}}" class="delete"         bindtap="deleteItem">-</view>
+        </view>     
+      </checkbox-group>
+    </view>
+  </view>
+</view>
